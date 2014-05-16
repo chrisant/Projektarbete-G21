@@ -37,6 +37,20 @@ define('PUBLIC_PATH',   realpath(dirname(__FILE__)) . '/public/'); // Ändra til
 include LIB . 'Exceptions/NotFoundException.php';
 include LIB . 'Exceptions/InvalidViewException.php';
 
+
+/*
+ * ----------------------------------------
+ *  Models
+ * ----------------------------------------
+ *
+ * Modeller beskriver hur ett objekt ur databasen ska instansieras.
+ * Här inkluderar vi grundmodellen som alla våra modeller bygger på.
+ *
+ */
+
+include LIB . 'Model/BaseModel.php';
+
+
 /*
  * ----------------------------------------
  *  Views

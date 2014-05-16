@@ -1,4 +1,6 @@
 <?php
+// index.php
+
 /*
  * ----------------------------------------
  *  Visa alla fel & varningar
@@ -9,7 +11,6 @@
  * att krascha kommer visas i webbläsaren.
  *
  */
-
 
 error_reporting(E_ALL);
 
