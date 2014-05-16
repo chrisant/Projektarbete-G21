@@ -1,5 +1,7 @@
 <?php namespace G21\Libraries;
 
+use G21\Libraries\Exceptions\InvalidViewException;
+
 class View {
 
 
@@ -9,23 +11,32 @@ class View {
         // alla segment är mappar tills det sista segmentet, vilket är filnamnet.
         $segments = explode('.', $string);
 
-        // Variabel för att bygga upp filnamn
-        $file = '';
 
-        // Om någon mot förmodan skapar en komplex mappstruktur med odefinierat antal
-        // nivåer av mappar använder vi oss av en for-loop för att ta bygga upp
-        // mappstrukturen för att slutligen ladda filen vi behöver.
+        // Bygg upp mappstrukturen utifrån den angivna filen.
+        $file = '';
         for ($i = 0; $i < count($segments) - 1; $i++)
         {
             // I varje iteration konkatenerar vi mapparna med '/' mellan dem.
             $file .= $segments[$i] . '/';
         }
         // Lägg till filnamnet och filändelse
-        $file .= $segments[count($segments) - 1] . '.php';
+        $file .= APP . 'views/' . $segments[count($segments) - 1] . '.php';
 
-        // inkludera filen
-        require APP . 'views/' . $file;
-        return true;
 
+        if ( file_exists($file) )
+        {
+            // Inkludera header
+            require layout_header;
+
+            // Inkludera den specifika filen
+            require $file;
+
+            // Inkludera footer
+            require layout_footer;
+
+            return true;
+        }
+        else
+            throw new InvalidViewException();
     }
 }

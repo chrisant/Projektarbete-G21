@@ -28,6 +28,7 @@ define('PUBLIC_PATH',   realpath(dirname(__FILE__)) . '/public/'); // Ändra til
  */
 
 include LIB . 'Exceptions/NotFoundException.php';
+include LIB . 'Exceptions/InvalidViewException.php';
 
 /*
  * ----------------------------------------
@@ -50,7 +51,7 @@ include LIB . 'View/View.php';
  * ----------------------------------------
  *
  * EJ FULLT FUNKTIONELL
- * Enkel routing körs inuti konstruktorn på Bootstrap för tillfället.
+ * Enkel routing körs inuti konstruktorn på Framework för tillfället.
  *
  */
 
@@ -63,3 +64,17 @@ include LIB . 'Routing/Controller.php';
  * Kanske lite väl avancerad routing för vårt projekt, men i en riktig app hade
  * routing nog implementerats mer åt det här hållet.
  */
+
+
+/*
+ * ----------------------------------------
+ *  Ladda applikationsklassen
+ * ----------------------------------------
+ *
+ * Applikationsklassen som omsluter hela vår app.
+ * Vidare i den här filen kan man kalla metoder i app-klassen för att justera
+ * parametrar för applikationens körning, specifikt till det aktuella behovet.
+ *
+ */
+
+require_once LIB . 'Framework/application.php';

@@ -31,11 +31,11 @@ require __DIR__.'/../autoload.php';
  *  Starta applikationen
  * ----------------------------------------
  *
- * Här instantierar vi applikationen så vi kan använda fårt framework.
+ * Här instansierar vi applikationen så vi kan använda vårat framework.
  *
  */
+$app = new \G21\Libraries\Framework\Application();
 
-$app = require_once LIB . 'bootstrap.php';
 
 
 

@@ -1,8 +1,8 @@
-<?php
+<?php namespace G21\Libraries\Framework;
 
-class Bootstrap {
+class Application {
 
-    function __construct()
+    public function __construct()
     {
         // Mycket enkel routing att använda för tillfället.
         // Adressen blir då example.com/controller/action/parameters
