@@ -19,10 +19,12 @@ class View {
             // I varje iteration konkatenerar vi mapparna med '/' mellan dem.
             $file .= $segments[$i] . '/';
         }
-        // Lägg till filnamnet och filändelse
-        $file .= APP . 'views/' . $segments[count($segments) - 1] . '.php';
+
+        // Lägg till hela sökvägen
+        $file = APP . 'views/' . $file . $segments[count($segments) - 1] . '.php';
 
 
+        // Rendera vyn, om filen finns
         if ( file_exists($file) )
         {
             // Inkludera header
@@ -37,6 +39,9 @@ class View {
             return true;
         }
         else
+        {
             throw new InvalidViewException();
+        }
     }
+
 }

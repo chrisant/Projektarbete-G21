@@ -1,9 +1,18 @@
 <?php namespace G21\Libraries\Exceptions;
 
-class InvalidViewException extends \Exception {
+use Exception;
 
-    public function __construct($message = 'Kunde inte hitta vy-fil')
+class InvalidViewException extends Exception {
+
+    public function __construct($message = 'Kunde inte hitta vy-fil', $code = 0, Exception $previous = null)
     {
-        parent
+        parent::__construct();
+
     }
+
+    public function __toString()
+    {
+        return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
+    }
+
 }
