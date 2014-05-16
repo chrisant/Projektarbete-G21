@@ -1,10 +1,18 @@
 <?php namespace G21\Libraries;
 
 use G21\Libraries\Exceptions\InvalidViewException;
+use G21\Libraries\Model\BaseModel;
 
 class View {
 
     protected $models = array();
+    public $model;
+
+
+    public function __construct()
+    {
+        $this->model = new BaseModel();
+    }
 
     /**
      * @param $view

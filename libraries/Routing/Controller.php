@@ -12,15 +12,13 @@ class Controller {
 
     public function requireModel($modelName)
     {
-        $modelName = ucfirst($modelName);
-        $path = APP . 'models/' . $modelName . '.php';
+        $path = APP . 'models/' . ucfirst($modelName) . '.php';
+        $modelName = '\G21\App\Models\\' . ucfirst($modelName);
 
         if ( file_exists($path) )
         {
             require $path;
-            $model = new $modelName();
-
+            return $model = new $modelName();
         }
     }
-
 }

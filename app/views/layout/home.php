@@ -1,3 +1,3 @@
 <h1>Startpage</h1>
 <p>Hello World!</p>
-<?php echo($this->model->sayHi()); ?>
+<p>BaseModel s&auml;ger: <?php echo($this->model->sayHello()); ?></p>

@@ -6,4 +6,10 @@ class BaseModel {
     {
         // Skapa en ny instans av DB-objektet så vi kan hämta data från databasen.
     }
+
+
+    public function sayHello()
+    {
+        return 'Hello World';
+    }
 }
