@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 1em sans-serif;
+    color: #212121;
+    background: #EEE;
+    padding-top: 30px;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #FFF;
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+}
+
+header, main, footer {
+
+    padding: 10px 20px;
+
+}
+
