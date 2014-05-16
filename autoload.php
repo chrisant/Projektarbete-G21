@@ -1,5 +1,10 @@
 <?php
-// Testsss
+
+/*
+ * Autoload
+ * Ladda alla filer som behövs
+ * 
+ */
 
 
 /*
