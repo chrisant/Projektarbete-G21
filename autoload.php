@@ -17,12 +17,19 @@
  *
  */
 
-define('ROOT',          realpath(dirname(__FILE__)) . '/');
-define('APP',           realpath(dirname(__FILE__)) . '/app/');
-define('LIB',           realpath(dirname(__FILE__)) . '/libraries/');
-define('CONFIG',        realpath(dirname(__FILE__)) . '/config/');
-define('PUBLIC_PATH',   realpath(dirname(__FILE__)) . '/public/'); // Ändra till att detecta serverns URL....
+define('ROOT',      realpath(dirname(__FILE__)) . '/');
+define('APP',       realpath(dirname(__FILE__)) . '/app/');
+define('LIB',       realpath(dirname(__FILE__)) . '/libraries/');
+define('CONFIG',    realpath(dirname(__FILE__)) . '/config/');
 
+// Hämta nuvarande URL
+$path = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$public = isset($_SERVER['PATH_INFO']) ?
+    'http://' . str_replace($_SERVER['PATH_INFO'], "", $path) . '/' :
+    'http://' . $path;
+
+// Definiera den publika sökvägen
+define('PUBLIC_PATH', $public);
 
 /*
  * ----------------------------------------
