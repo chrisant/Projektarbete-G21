@@ -17,7 +17,7 @@
  *
  */
 
-define('ROOT',      realpath(dirname(__FILE__)) . '/');
+define('SITE_PATH',      realpath(dirname(__FILE__)) . '/');
 define('APP',       realpath(dirname(__FILE__)) . '/app/');
 define('LIB',       realpath(dirname(__FILE__)) . '/libraries/');
 define('CONFIG',    realpath(dirname(__FILE__)) . '/config/');
@@ -55,7 +55,7 @@ include LIB . 'Exceptions/InvalidViewException.php';
  *
  */
 
-include LIB . 'Model/BaseModel.php';
+include LIB . 'Model/Model.php';
 
 
 /*

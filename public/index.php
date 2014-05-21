@@ -11,7 +11,6 @@
  * att krascha kommer visas i webbläsaren.
  *
  */
-
 error_reporting(E_ALL);
 
 
@@ -23,7 +22,6 @@ error_reporting(E_ALL);
  * Ladda alla de filer som behövs för att starta
  *
  */
-
 require __DIR__.'/../autoload.php';
 
 

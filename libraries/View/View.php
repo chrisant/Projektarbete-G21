@@ -5,79 +5,86 @@ use G21\Libraries\Model\BaseModel;
 
 class View {
 
-    protected $models = array();
-    public $model;
+    private $data;
 
-
-    public function __construct()
+    public function __get($name)
     {
-        $this->model = new BaseModel();
+        if (array_key_exists($name, $this->data)) {
+            return $this->data[$name];
+        }
     }
 
-    /**
-     * @param $view
-     * @return bool
-     */
-    public function make($view)
+    public function __set($name, $value)
     {
-        return $this->render(
-            $this->generateFilePath($view)
-        );
+        $this->data[$name] = $value;
     }
 
-    /**
-     * @param $string
-     * @return string
-     * @throws Exceptions\InvalidViewException
-     */
-    private function generateFilePath($string)
+    public function render($view, $full = true)
     {
-        // Filtrera ut mapp och filnamn. Separerat med '.'
-        // alla segment är mappar tills det sista segmentet, vilket är filnamnet.
-        $segments = explode('.', $string);
+        // Kontrollera om vi valt att använda den minimala vyn
+        if (!$full) {
+            return $this->generateBasic($view);
+        }
+        // Annars renderar vi den vanliga vyn
+        return $this->generateView($view);
 
+    }
 
-        // Bygg upp mappstrukturen utifrån den angivna filen.
+    private function generateView($view)
+    {
+        if ($file = $this->generateFilePath($view))
+        {
+            // Inkludera header
+            require SITE_PATH . 'app/views/layout/_header.php';
+
+            // Inkludera den aktuella vyn
+            require $file;
+
+            // Inkludera footer
+            require SITE_PATH . 'app/views/layout/_footer.php';
+
+            return true;
+        }
+        return false;
+    }
+
+    private function generateBasic($view)
+    {
+        if ($file = $this->generateFilePath($view))
+        {
+            // Inkludera header
+            require SITE_PATH . 'app/views/layout/_header-basic.php';
+
+            // Inkludera den aktuella vyn
+            require $file;
+
+            // Inkludera footer
+            require SITE_PATH . 'app/views/layout/_footer-basic.php';
+
+            return true;
+        }
+        return false;
+    }
+
+    private function generateFilePath($file)
+    {
+        // Filtrera ut alla mappar och filnamnet
+        $segments = explode('.', $file);
+
+        // bygg upp mappstrukturen
         $file = '';
         for ($i = 0; $i < count($segments) - 1; $i++)
         {
-            // I varje iteration konkatenerar vi mapparna med '/' mellan dem.
             $file .= $segments[$i] . '/';
         }
 
-        // Lägg till hela sökvägen
-        $file = APP . 'views/' . $file . $segments[count($segments) - 1] . '.php';
+        //lägg till hela sökvägen
+        $file = SITE_PATH . 'app/views/' . $file .$segments[count($segments) -1] . '.php';
 
-
-        // Kontrollera att filen faktiskt finns
         if ( file_exists($file) )
             return $file;
         else
-            throw new InvalidViewException();
-    }
-
-    /**
-     * @param $file
-     * @return bool
-     */
-    private function render($file)
-    {
-        // Inkludera header
-        require layout_header;
-
-        // Inkludera den specifika filen
-        require $file;
-
-        // Inkludera footer
-        require layout_footer;
-
-        return true;
-
-    }
-
-    public function useModel($model)
-    {
-        $this->models[] = $model;
+            throw new \Exception('Invalid view file');
     }
 
 }

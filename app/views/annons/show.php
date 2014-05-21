@@ -1,0 +1,1 @@
+visa annons <?php echo($this->anonns['id']); ?>

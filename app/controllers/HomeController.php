@@ -4,11 +4,9 @@ use G21\Libraries\Controller;
 
 class HomeController extends Controller {
 
-    public function home()
+    public function index()
     {
-        //$this->view->useModel(['hello' => 'world']);
-        $this->requireModel('dummy');
-        return $this->view->make('layout.home');
+        return $this->view->render('layout.home');
     }
 
 }

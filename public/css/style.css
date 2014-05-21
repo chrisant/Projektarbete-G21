@@ -15,12 +15,31 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     background: #FFF;
-    box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+    padding: 20px 10px;
 }
 
 header, main, footer {
 
-    padding: 10px 20px;
+}
 
+a:link, a:visited {
+    color: #151621;
+    text-decoration: none;
+}
+a:hover { color: #27293d; }
+a:active { color: #393d5a; }
+
+nav ul {
+    list-style: none;
+    float: right;
+}
+
+nav ul li {
+    float: left;
+
+}
+
+nav ul li a {
+    padding: 5px 10px;
 }
 

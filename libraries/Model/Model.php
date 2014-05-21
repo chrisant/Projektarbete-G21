@@ -1,7 +1,7 @@
 <?php namespace G21\Libraries\Model;
 
 // Ska vara en abstrakt klass
-class BaseModel {
+class Model {
 
     public function __construct()
     {

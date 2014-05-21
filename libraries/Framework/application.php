@@ -2,46 +2,81 @@
 
 class Application {
 
+    protected $controller = 'HomeController';
+    protected $method = 'index';
+    protected $params = [];
+
+
+
+    /*
+     * Vanligtvis använder man sig av mer avancerad "routing" för att hitta till
+     * olika delar av sidan/applikationen,
+     *
+     */
     public function __construct()
     {
-        // Mycket enkel routing att använda för tillfället.
-        // Adressen blir då example.com/controller/action/parameters
-        $uri = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : null;
+        $url = $this->parseUrl();
+        $this->loadController($url);
+    }
 
-        // Kontrollera först om vi laddar startsidan. Dvs om uri är tom.
-        if ( empty($uri) )
+    private function parseUrl()
+    {
+        if (isset($_SERVER['PATH_INFO']))
         {
-            $homecontroller = APP . 'controllers/HomeController.php';
-            require $homecontroller;
-            $controller = new \G21\App\Controllers\HomeController();
-            $controller->home();
+            return $url = explode('/',
+                filter_var(
+                    trim($_SERVER['PATH_INFO'], '/'),
+                    FILTER_SANITIZE_URL
+                )
+            );
+        }
+        return false;
+    }
+
+
+    private function loadController($url)
+    {
+        $controllerFile = SITE_PATH . 'app/controllers/' . ucfirst($url[0]) . 'Controller.php';
+
+        if (file_exists($controllerFile))
+        {
+            $this->controller = '\G21\App\Controllers\\' . ucfirst($url[0]) . 'Controller';
+            unset($url[0]);
         }
         else
         {
-            // Spara uri-segmenten i egna variabler.
-            $class = isset($uri[1]) ? '\G21\App\Controllers\\' . ucfirst($uri[1]) . 'Controller': null;
-            $filepath = isset($uri[1]) ? APP . 'controllers/' . ucfirst($uri[1]) . 'Controller.php' : null;
-            $action = isset($uri[2]) ? $uri[2] : null;
-            $param = isset($uri[3]) ? $uri[3] : null;
-
-            // Ladda rätt kontroller, om den finns.
-            if (file_exists($filepath))
-                require $filepath;
-            else
-                throw new \G21\Libraries\Exceptions\NotFoundException("The file: $filepath Does not exist");
-
-
-            $controller = new $class;
-
-            if ( isset($action) )
+            if (isset($url[0]))
             {
-                if ( isset($param) )
-                    $controller->{$action}($param);
-                else
-                    $controller->{$action}();
+                // episk felhantering #YOLO
+                echo ('Controller \'<strong>' . ucfirst($url[0]) . 'Controller</strong>\' does not exist');
+                die();
+            }
+
+            $controllerFile = SITE_PATH . 'app/controllers/' . $this->controller . '.php';
+            $this->controller = '\G21\App\Controllers\\' . $this->controller;
+        }
+
+        require_once $controllerFile;
+        $this->controller = new $this->controller;
+
+        if (isset($url[1]))
+        {
+            if (method_exists($this->controller, $url[1]))
+            {
+                $this->method = $url[1];
+                unset($url[1]);
+            }
+            else
+            {
+                // episk felhantering #YOLO
+                echo ('Controller method \'<strong>' . $url[1] . '</strong>\' does not exist');
+                die();
             }
         }
 
+        $this->params = $url ? array_values($url) : [];
+
+        call_user_func_array([$this->controller, $this->method], $this->params);
     }
 
 }
