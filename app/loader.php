@@ -18,7 +18,7 @@
  */
 
 // Definiera serverns sökväg till vår applikation
-define('APP_PATH', realpath(dirname(__FILE__)) . '/app');
+define('APP_PATH', realpath(dirname(__FILE__)));
 
 // Hämta nuvarande URL för att kunna skapa den offentliga URL-sökvägen
 $path = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
@@ -55,7 +55,7 @@ include APP_PATH . '/libraries/Exceptions/InvalidViewException.php';
  * Här inkluderar vi grundmodellen som alla våra modeller bygger på.
  *
  */
-include APP_PATH . '/libraries/Model.php';
+include APP_PATH . '/libraries/Database.php';
 
 /*
  * ----------------------------------------
