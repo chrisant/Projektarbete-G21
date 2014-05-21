@@ -1,6 +1,6 @@
-<h1>Login</h1>
+<h2>Logga in</h2>
 <form>
-    <input type="text" name="username" placeholder="username">
-    <input type="password" name="password" placeholder="password">
-    <input type="submit" title="Login">
+    <input type="text" name="username" placeholder="Anv&auml;ndarnamn">
+    <input type="password" name="password" placeholder="L&ouml;senord">
+    <input type="submit" value="Logga in">
 </form>

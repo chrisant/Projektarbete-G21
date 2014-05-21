@@ -43,3 +43,27 @@ nav ul li a {
     padding: 5px 10px;
 }
 
+input, textarea {
+    border: 1px solid #DDD;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    padding: 5px 10px;
+    margin: 3px 0;
+    font: 0.9em sans-serif;
+    color: #212121;
+}
+
+input:hover, textarea:hover {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+input:focus, textarea:focus {
+    border-color: #8bbbff;
+}
+
+.error {
+    border-color: #ff8486;
+}
+
+.error:focus {
+    border: 1px dotted red;
+}

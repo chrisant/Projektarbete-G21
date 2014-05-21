@@ -11,21 +11,15 @@ class User extends Model {
         'email',
         'phone',
         'password',
-        'confirm-password',
         'salt'
     ];
 
-    protected $ignored = [
-        'confirm-password'
-    ];
-
-    protected $rules = [
-        'name'      => 'required',
-        'email'     => 'required|email',
-        'phone'     => '',
-        'password'  => 'required|match:confirm-password',
-        'confirm-password'  => 'required|match:password',
-        'salt'      => 'required'
+    public $rules = [
+        'name'              => 'required',
+        'email'             => 'required|email',
+        'phone'             => 'required',
+        'password'          => 'required|match:confirm-password',
+        'confirm-password'  => 'required'
     ];
 
 

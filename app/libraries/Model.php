@@ -38,17 +38,6 @@ abstract class Model {
     protected $db;
 
 
-    /**
-     * @var array
-     */
-    protected $rules;
-
-
-    /**
-     * @var array
-     */
-    public $validationErrors;
-
     protected $ignored;
 
 
@@ -99,29 +88,14 @@ abstract class Model {
 
     public function save()
     {
-        // Validera värdena som angetts
-        if ($this->validateInput($this->values))
-        {
-            // Bygg och förbered SQL
-            $stmt = $this->db->prepare( $this->buildSQL() );
+        // Bygg och förbered SQL
+        $stmt = $this->db->prepare( $this->buildSQL() );
 
-            // Utför SQL och spara modellen
-            // Returnerar true/false beroende på resultat
-            return $stmt->execute();
-        }
-
-        // Annars returnerar vi false
-        return false;
+        // Utför SQL och spara modellen
+        // Returnerar true/false beroende på resultat
+        return $stmt->execute();
     }
 
-    private function validateInput($input)
-    {
-        $validator = new Validator($this->rules);
-
-        $this->validationErrors = $validator->validate($input);
-
-        return $validator->result;
-    }
 
 
     private function buildSQL()
