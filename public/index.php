@@ -16,10 +16,10 @@ error_reporting(E_ALL);
 
 /*
  * ----------------------------------------
- *  Registrera autoloadern
+ *  Hämta vår loader
  * ----------------------------------------
  *
- * Ladda alla de filer som behövs för att starta
+ * Ladda alla de filer som behövs för att starta applikationen
  *
  */
 require __DIR__ . '/../app/loader.php';

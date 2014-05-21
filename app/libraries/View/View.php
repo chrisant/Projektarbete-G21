@@ -1,8 +1,5 @@
 <?php namespace G21\Libraries;
 
-use G21\Libraries\Exceptions\InvalidViewException;
-use G21\Libraries\Model\BaseModel;
-
 class View {
 
     private $data;

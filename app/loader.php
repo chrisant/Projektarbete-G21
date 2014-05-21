@@ -31,6 +31,16 @@ define('PUBLIC_PATH', $public);
 
 
 
+/*
+ * ----------------------------------------
+ *  Config
+ * ----------------------------------------
+ *
+ * Inkludera klassen med alla konfigurationsvariabler.
+ *
+ */
+include APP_PATH . '/libraries/Config.php';
+
 
 /*
  * ----------------------------------------
@@ -48,14 +58,14 @@ include APP_PATH . '/libraries/Exceptions/InvalidViewException.php';
 
 /*
  * ----------------------------------------
- *  Models
+ *  Databasen
  * ----------------------------------------
  *
- * Modeller beskriver hur ett objekt ur databasen ska instansieras.
- * Här inkluderar vi grundmodellen som alla våra modeller bygger på.
+ * Inkludera klassen för databasen.
  *
  */
 include APP_PATH . '/libraries/Database.php';
+
 
 /*
  * ----------------------------------------
@@ -67,6 +77,17 @@ include APP_PATH . '/libraries/Database.php';
  *
  */
 include APP_PATH . '/libraries/Model.php';
+
+
+/*
+ * ----------------------------------------
+ *  Validator
+ * ----------------------------------------
+ *
+ * Klassen för validering
+ *
+ */
+include APP_PATH . '/libraries/Validator.php';
 
 
 /*

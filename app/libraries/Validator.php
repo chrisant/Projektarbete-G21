@@ -1,6 +1,6 @@
-<?php namespace G21\Libraries\Validation;
+<?php namespace G21\Libraries;
 
-abstract class Validator {
+class Validator {
 
     /**
      * Resultatet av valideringen.
@@ -36,6 +36,13 @@ abstract class Validator {
      * @var bool
      */
     protected $validKey;
+
+
+    public function __construct($rules)
+    {
+        $this->rules = $rules;
+    }
+
 
     /**
      * Metoden för validering.
