@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Autoload
+ * Loader.php
  * Ladda alla filer som behövs
  * 
  */
@@ -9,7 +9,7 @@
 
 /*
  * ----------------------------------------
- *  CONSTANTS
+ *  PATHS = CONSTANTS
  * ----------------------------------------
  *
  * En typ av variabler man kan ange värden på för att lätt använda senare.
@@ -17,19 +17,20 @@
  *
  */
 
-define('SITE_PATH',      realpath(dirname(__FILE__)) . '/');
-define('APP',       realpath(dirname(__FILE__)) . '/app/');
-define('LIB',       realpath(dirname(__FILE__)) . '/libraries/');
-define('CONFIG',    realpath(dirname(__FILE__)) . '/config/');
+// Definiera serverns sökväg till vår applikation
+define('APP_PATH', realpath(dirname(__FILE__)) . '/app');
 
-// Hämta nuvarande URL
+// Hämta nuvarande URL för att kunna skapa den offentliga URL-sökvägen
 $path = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $public = isset($_SERVER['PATH_INFO']) ?
-    'http://' . str_replace($_SERVER['PATH_INFO'], "", $path) . '/' :
-    'http://' . $path;
+    'http://' . str_replace($_SERVER['PATH_INFO'], "", $path):
+    rtrim('http://' . $path, '/');
 
 // Definiera den publika sökvägen
 define('PUBLIC_PATH', $public);
+
+
+
 
 /*
  * ----------------------------------------
@@ -41,8 +42,8 @@ define('PUBLIC_PATH', $public);
  *
  */
 
-include LIB . 'Exceptions/NotFoundException.php';
-include LIB . 'Exceptions/InvalidViewException.php';
+include APP_PATH . '/libraries/Exceptions/NotFoundException.php';
+include APP_PATH . '/libraries/Exceptions/InvalidViewException.php';
 
 
 /*
@@ -54,8 +55,18 @@ include LIB . 'Exceptions/InvalidViewException.php';
  * Här inkluderar vi grundmodellen som alla våra modeller bygger på.
  *
  */
+include APP_PATH . '/libraries/Model.php';
 
-include LIB . 'Model/Model.php';
+/*
+ * ----------------------------------------
+ *  Models
+ * ----------------------------------------
+ *
+ * Modeller beskriver hur ett objekt ur databasen ska instansieras.
+ * Här inkluderar vi grundmodellen som alla våra modeller bygger på.
+ *
+ */
+include APP_PATH . '/libraries/Model.php';
 
 
 /*
@@ -68,10 +79,19 @@ include LIB . 'Model/Model.php';
  * bygger upp en sida med de variablerna.
  *
  */
+include APP_PATH . '/libraries/View/View.php';
 
-include LIB . 'View/Helpers.php';
-include LIB . 'View/View.php';
 
+/*
+ * ----------------------------------------
+ *  Controller
+ * ----------------------------------------
+ *
+ * Grundkontrollern som alla övriga kontrollers bygger på.
+ * Tillhandahåller grundfunktionaliteten
+ *
+ */
+include APP_PATH . '/libraries/Controller.php';
 
 /*
  * ----------------------------------------
@@ -80,18 +100,14 @@ include LIB . 'View/View.php';
  *
  * EJ FULLT FUNKTIONELL
  * Enkel routing körs inuti konstruktorn på Framework för tillfället.
+ * Kanske lite väl avancerad routing för vårt projekt, men i en riktig app hade
+ * routing nog implementerats mer åt det här hållet.
  *
  */
-
-include LIB . 'Routing/Controller.php';
 //include LIB . 'Routing/Router.php';
 //include LIB . 'Routing/Route.php';
 //include CONFIG . 'routes.php';
 
-/*
- * Kanske lite väl avancerad routing för vårt projekt, men i en riktig app hade
- * routing nog implementerats mer åt det här hållet.
- */
 
 
 /*
@@ -105,4 +121,4 @@ include LIB . 'Routing/Controller.php';
  *
  */
 
-require_once LIB . 'Framework/application.php';
+require_once APP_PATH . '/libraries/Framework/application.php';

@@ -36,11 +36,11 @@ class Application {
 
     private function loadController($url)
     {
-        $controllerFile = SITE_PATH . 'app/controllers/' . ucfirst($url[0]) . 'Controller.php';
+        $controllerFile = APP_PATH . '/controllers/' . ucfirst($url[0]) . 'Controller.php';
 
         if (file_exists($controllerFile))
         {
-            $this->controller = '\G21\App\Controllers\\' . ucfirst($url[0]) . 'Controller';
+            $this->controller = '\G21\Controllers\\' . ucfirst($url[0]) . 'Controller';
             unset($url[0]);
         }
         else
@@ -52,7 +52,7 @@ class Application {
                 die();
             }
 
-            $controllerFile = SITE_PATH . 'app/controllers/' . $this->controller . '.php';
+            $controllerFile = APP_PATH . '/controllers/' . $this->controller . '.php';
             $this->controller = '\G21\App\Controllers\\' . $this->controller;
         }
 

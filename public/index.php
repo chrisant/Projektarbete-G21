@@ -22,7 +22,7 @@ error_reporting(E_ALL);
  * Ladda alla de filer som behövs för att starta
  *
  */
-require __DIR__.'/../autoload.php';
+require __DIR__ . '/../loader.php';
 
 
 /*

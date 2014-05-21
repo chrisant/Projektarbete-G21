@@ -1,5 +1,6 @@
-<?php namespace G21\App\Controllers;
+<?php namespace G21\Controllers;
 
+use G21\Libraries\Config;
 use G21\Libraries\Controller;
 
 class UserController extends Controller {

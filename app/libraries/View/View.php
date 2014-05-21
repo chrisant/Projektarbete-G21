@@ -35,13 +35,13 @@ class View {
         if ($file = $this->generateFilePath($view))
         {
             // Inkludera header
-            require SITE_PATH . 'app/views/layout/_header.php';
+            require APP_PATH . '/views/partials/_header.php';
 
             // Inkludera den aktuella vyn
             require $file;
 
             // Inkludera footer
-            require SITE_PATH . 'app/views/layout/_footer.php';
+            require APP_PATH . '/views/partials/_footer.php';
 
             return true;
         }
@@ -53,13 +53,13 @@ class View {
         if ($file = $this->generateFilePath($view))
         {
             // Inkludera header
-            require SITE_PATH . 'app/views/layout/_header-basic.php';
+            require APP_PATH . '/views/partials/_header-basic.php';
 
             // Inkludera den aktuella vyn
             require $file;
 
             // Inkludera footer
-            require SITE_PATH . 'app/views/layout/_footer-basic.php';
+            require APP_PATH . '/views/partials/_footer-basic.php';
 
             return true;
         }
@@ -79,7 +79,7 @@ class View {
         }
 
         //lägg till hela sökvägen
-        $file = SITE_PATH . 'app/views/' . $file .$segments[count($segments) -1] . '.php';
+        $file = APP_PATH . '/views/' . $file .$segments[count($segments) -1] . '.php';
 
         if ( file_exists($file) )
             return $file;
