@@ -34,7 +34,3 @@ require __DIR__.'/../autoload.php';
  *
  */
 $app = new \G21\Libraries\Framework\Application();
-
-
-
-
