@@ -110,8 +110,7 @@ abstract class Model {
         // Bygg strängen med alla kolumner
         foreach ($this->fields as $field)
         {
-            if ( !in_array($field, $this->ignored) )
-                $columns .= $field . ',';
+            $columns .= $field . ',';
         }
 
         // Ta bort det sista kommatecknet och lägg till slutparentesen
@@ -123,8 +122,7 @@ abstract class Model {
         // Bygg strängen med alla värden
         foreach ($this->values as $key => $value)
         {
-            if ( !in_array($key, $this->ignored) )
-                $values .= '\'' . $value . '\',';
+            $values .= '\'' . $value . '\',';
         }
 
         // Ta bort det sista kommatecknet och lägg till slutparentesen

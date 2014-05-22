@@ -21,7 +21,8 @@ class AnnonsController extends Controller {
 
     public function skapa()
     {
-        return $this->view->render('annons.create');
+        if (!empty($_SESSION))
+            return $this->view->render('annons.create');
     }
 
 }

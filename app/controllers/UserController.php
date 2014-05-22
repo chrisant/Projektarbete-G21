@@ -53,7 +53,7 @@ class UserController extends Controller {
             if ( $validator->result )
             {
                 // Skapa salt och ett hashat lösenord
-                $salt = str_shuffle(Co§nfig::SaltString);
+                $salt = str_shuffle(Config::SaltString);
                 $hashedPass = hash('sha512', $_POST['password'] . $salt);
 
                 // Ange värden för användaren
@@ -71,7 +71,9 @@ class UserController extends Controller {
                     // redirecta till användarprofilen eller login?
                     // logga in automatiskt?
                     // verifiera epost senare eller innan login?
-                    header('Location: ' . PUBLIC_PATH . '/login');
+                    $_SESSION['message'] = 'User created successfully';
+                    //header('Location: ' . PUBLIC_PATH);
+                    return $this->view->render('home');
                 }
 
             }
