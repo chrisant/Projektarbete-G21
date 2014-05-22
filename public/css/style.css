@@ -29,6 +29,10 @@ a:link, a:visited {
 a:hover { color: #27293d; }
 a:active { color: #393d5a; }
 
+.clearfix {
+    clear: both;
+}
+
 nav ul {
     list-style: none;
     float: right;
@@ -71,4 +75,30 @@ input:focus, textarea:focus {
 .closure {
     text-align: center;
     margin-top: 15px;
+}
+.annons-title{
+
+}
+
+img.right {
+    float: right;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.annons-description {
+    width: 100%;
+    max-width: 700px;
+}
+
+.annons-links {
+    list-style: none;
+}
+
+.annons-links li {
+    float: left;
+}
+
+.annons-links li a {
+    padding: 10px;
 }
