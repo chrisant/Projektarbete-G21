@@ -30,55 +30,57 @@ class UserController extends Controller {
     public function store()
     {
         // Om ingen POST-data finns omdirigerar vi till user/create
-        if (empty($_POST)) header('Location: ' . PUBLIC_PATH . '/user/register');
-
-        // Spara och formattera POST-datan
-        $input = [
-            'name' => str_replace(' ', '', $_POST['name']),
-            'email' => str_replace(' ', '', $_POST['email']),
-            'phone' => str_replace('-', '', str_replace(' ', '', $_POST['phone'])),
-            'password' => $_POST['password'],
-            'confirm-password' => $_POST['confirm-password'],
-        ];
-
-        // Instansiera en ny användare
-        $user = new User();
-
-        // Instansiera en validator
-        $validator = new Validator($user->rules);
-
-        // Validera input och spara eventuella errormeddelanden
-        $errors = $validator->validate($input);
-
-        if ( $validator->result )
+        if (!empty($_POST))
         {
-            // Skapa salt och ett hashat lösenord
-            $salt = str_shuffle(Config::SaltString);
-            $hashedPass = hash('sha512', $_POST['password'] . $salt);
+            // Spara och formattera POST-datan
+            $input = [
+                'name' => str_replace(' ', '', $_POST['name']),
+                'email' => str_replace(' ', '', $_POST['email']),
+                'phone' => str_replace('-', '', str_replace(' ', '', $_POST['phone'])),
+                'password' => $_POST['password'],
+                'confirm-password' => $_POST['confirm-password'],
+            ];
 
-            // Ange värden för användaren
-            $user->create([
-                'name' => $input['name'],
-                'email' => $input['email'],
-                'phone' => $input['phone'],
-                'password' => $hashedPass,
-                'salt' => $salt
-            ]);
+            // Instansiera en ny användare
+            $user = new User();
 
-            // Försök spara användaren (validering sker automatiskt i modellen)
-            if ($user->save())
+            // Instansiera en validator
+            $validator = new Validator($user->rules);
+
+            // Validera input och spara eventuella errormeddelanden
+            $errors = $validator->validate($input);
+
+            if ( $validator->result )
             {
-                // redirecta till användarprofilen eller login?
-                // logga in automatiskt?
-                // verifiera epost senare eller innan login?
-                header('Location: ' . PUBLIC_PATH . '/login');
-            }
+                // Skapa salt och ett hashat lösenord
+                $salt = str_shuffle(Co§nfig::SaltString);
+                $hashedPass = hash('sha512', $_POST['password'] . $salt);
 
+                // Ange värden för användaren
+                $user->create([
+                    'name' => $input['name'],
+                    'email' => $input['email'],
+                    'phone' => $input['phone'],
+                    'password' => $hashedPass,
+                    'salt' => $salt
+                ]);
+
+                // Försök spara användaren (validering sker automatiskt i modellen)
+                if ($user->save())
+                {
+                    // redirecta till användarprofilen eller login?
+                    // logga in automatiskt?
+                    // verifiera epost senare eller innan login?
+                    header('Location: ' . PUBLIC_PATH . '/login');
+                }
+
+            }
+            else
+            {
+                return $this->register($errors, $input);
+            }
         }
-        else
-        {
-            return $this->register($errors, $input);
-        }
+        header('Location: ' . PUBLIC_PATH . '/user/register');
 
 
     }
