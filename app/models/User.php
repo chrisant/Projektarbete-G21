@@ -12,7 +12,6 @@ class User extends Model {
         'phone',
         'password',
         'salt'
-        echo"hej";
     ];
 
     public $rules = [
