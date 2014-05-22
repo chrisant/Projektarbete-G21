@@ -67,3 +67,8 @@ input:focus, textarea:focus {
 .error:focus {
     border: 1px dotted red;
 }
+
+.closure {
+    text-align: center;
+    margin-top: 15px;
+}

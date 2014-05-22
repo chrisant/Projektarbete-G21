@@ -15,7 +15,10 @@ class Application {
      */
     public function __construct()
     {
+        // Bearbeta angiven URL så vi kan använda den
         $url = $this->parseUrl();
+
+        // Kör try catch på denna tack
         $this->loadController($url);
     }
 

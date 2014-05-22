@@ -89,6 +89,7 @@ abstract class Model {
     public function save()
     {
         // Bygg och förbered SQL
+        // prepare() kör automatisk escape på strängen
         $stmt = $this->db->prepare( $this->buildSQL() );
 
         // Utför SQL och spara modellen
@@ -137,17 +138,18 @@ abstract class Model {
 
 
 
-    public function find($key, $value, $order = ['id', 'ASC'])
+    public function find($column, $value, $order = ['id', 'ASC'])
     {
         // Förebered SQL
         $query = $this->db->prepare(
-            'SELECT * FROM ' . $this->table .
-            ' WHERE ' . $key . ' = ' . $value .
-            ' ORDER BY ' . $order[0] . ' ' . $order[1]
-        );
+            "SELECT * FROM $this->table
+            WHERE $column = :value
+            ORDER BY $order[0] $order[1]");
 
         // Utför queryn
-        $query->execute();
+        $query->execute([
+            ':value' => $value
+        ]);
 
         // Returnera en array med objekten från databasen
         return $query->fetchAll(DB::FETCH_OBJ);
@@ -157,12 +159,14 @@ abstract class Model {
     {
         // Förebered SQL
         $query = $this->db->prepare(
-            'SELECT * FROM ' . $this->table .
-            ' WHERE id = ' . $id
+            "SELECT * FROM $this->table
+            WHERE id = :id"
         );
 
         // Utför queryn
-        $query->execute();
+        $query->execute([
+            ':id' => $id
+        ]);
 
         // Returnera objektet från databasen
         return $query->fetch(DB::FETCH_OBJ);
@@ -172,8 +176,8 @@ abstract class Model {
     {
         // Förebered SQL
         $query = $this->db->prepare(
-            'SELECT * FROM ' . $this->table .
-            ' ORDER BY ' . $order[0] . ' ' . $order[1]
+            "SELECT * FROM $this->table
+            ORDER BY $order[0] $order[1]"
         );
 
         // Utför queryn

@@ -11,19 +11,10 @@ class UserController extends Controller {
 
     public function index()
     {
-        // get current user, save it to view
-
-        return $this->view->render('user.show');
-    }
-
-    public function login()
-    {
-        return $this->view->render('user.login');
-    }
-
-    public function logout()
-    {
-        // terminate session pls
+        $user = new User();
+        $user = $user->findById($_SESSION['id']);
+        $this->view->user = $user;
+        return $this->view->render('user.profile');
     }
 
     public function register($errors = array(), $old = array())
@@ -75,11 +66,12 @@ class UserController extends Controller {
             ]);
 
             // Försök spara användaren (validering sker automatiskt i modellen)
-            if ($user->save()) {
+            if ($user->save())
+            {
                 // redirecta till användarprofilen eller login?
                 // logga in automatiskt?
                 // verifiera epost senare eller innan login?
-                header('Location: ' . PUBLIC_PATH . '/user/login/');
+                header('Location: ' . PUBLIC_PATH . '/login');
             }
 
         }

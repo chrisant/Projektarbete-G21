@@ -53,12 +53,3 @@
         <input type="submit" value="Registrera">
     </div>
 </form>
-
-<pre>
-    <br>
-    errors:
-    <?= print_r($this->errors, 1) ?>
-    <br>
-    old input:
-    <?= print_r($this->old, 1) ?>
-</pre>

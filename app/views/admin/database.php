@@ -4,23 +4,24 @@
 <pre><?php if (count($this->messages) > 0) print_r($this->messages); ?></pre>
 <p>&nbsp;</p>
 
-<p>H&auml;r kan vi snabbt och enkelt fixa en databas med det vi beh&ouml;ver.</p>
-<p>Funktionerna nedan tar f&ouml;r givet att databasinst&auml;llningarna &auml;r korrekta i
+<p>Här kan vi snabbt och enkelt fixa en databas med det vi beöver.</p>
+<p>Funktionerna nedan tar för givet att databasinställningarna är korrekta i
     <code>/app/libraries/Config.php</code></p>
-<p>En databas ska allts&aring; vara skapad, men inga tabeller b&ouml;r finnas i den</p>
+<p>En databas ska alltså vara skapad, men inga tabeller bör finnas i den</p>
 
 <p>&nbsp;</p>
 <a href="<?= PUBLIC_PATH ?>/admin/createTables">&rarr; Skapa tabellerna</a>
 
 <p>&nbsp;</p><p>&nbsp;</p>
-<p>...har inte skapat funktionen f&ouml;r exempeldata &auml;nnu.</p>
-<!--
-<p>&nbsp;</p>
-<a href="<?= PUBLIC_PATH ?>/admin/createContent">&rarr; Fyll i exempeldata</a> <?php echo $this->message ?>
-
--->
+<p>Finns dock inte mycket exempeldata ännu</p>
 
 <p>&nbsp;</p>
+<a href="<?= PUBLIC_PATH ?>/admin/createContent">&rarr; Fyll i exempeldata</a>
 
-<p>OBS: att anv&auml;nda l&auml;nkarna flera g&aring;nger p&aring;
+
+
+<p>&nbsp;</p>
+
+<p>OBS: att använda länkarna flera gånger på
     samma databas skapar enbart konstiga errormeddelanden</p>
+<p>Radera tabeller först om ni ska köra in dem igen.</p>

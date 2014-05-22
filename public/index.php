@@ -16,6 +16,17 @@ error_reporting(E_ALL);
 
 /*
  * ----------------------------------------
+ *  Starta sessionen
+ * ----------------------------------------
+ *
+ * Vi startar sessionen här innan vi inkluderar några andra filer.
+ *
+ */
+session_start();
+
+
+/*
+ * ----------------------------------------
  *  Hämta vår loader
  * ----------------------------------------
  *
@@ -34,3 +45,6 @@ require __DIR__ . '/../app/loader.php';
  *
  */
 $app = new \G21\Libraries\Framework\Application();
+
+
+

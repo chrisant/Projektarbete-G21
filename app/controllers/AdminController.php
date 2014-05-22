@@ -18,11 +18,16 @@ class AdminController extends Controller {
 
     public function createTables()
     {
-
+        // Instansiera och ställ in ett databasobjekt
         $db = new Database();
         $db->setAttribute( Database::ATTR_ERRMODE, Database::ERRMODE_EXCEPTION );
 
-        $users =
+        // Skapa två arrayer vi behöver nedan
+        $msg = [];
+        $sql = [];
+
+        // Skapa SQL-queryn att köra
+        $sql[] =
             'CREATE TABLE users(
                 id INT(11) AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(50) NOT NULL,
@@ -32,7 +37,7 @@ class AdminController extends Controller {
                 salt VARCHAR(62) NOT NULL
             )';
 
-        $listings =
+        $sql[] =
             'CREATE TABLE listings(
                 id INT(11) AUTO_INCREMENT PRIMARY KEY,
                 title VARCHAR(50) NOT NULL,
@@ -42,20 +47,20 @@ class AdminController extends Controller {
                 updated TIMESTAMP NOT NULL
             )';
 
-        $tags =
+        $sql[] =
             'CREATE TABLE tags(
                 id INT(11) AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(50) NOT NULL
             )';
 
-        $listing_tag_pivot =
+        $sql[] =
             'CREATE TABLE listing_tag_pivot(
                 id INT(11) AUTO_INCREMENT PRIMARY KEY,
                 listing INT(11) NOT NULL,
                 tag INT(11) NOT NULL
             )';
 
-        $conversations =
+        $sql[] =
             'CREATE TABLE conversations(
                 id INT(11) AUTO_INCREMENT PRIMARY KEY,
                 sender INT(11) NOT NULL,
@@ -63,60 +68,74 @@ class AdminController extends Controller {
                 started TIMESTAMP NOT NULL
             )';
 
-        $messages =
+        $sql[] =
             'CREATE TABLE messages(
                 id INT(11) AUTO_INCREMENT PRIMARY KEY,
                 conversation INT(11) NOT NULL,
                 sender INT(11) NOT NULL,
+                body TEXT NOT NULL,
                 sent TIMESTAMP NOT NULL
             )';
 
-        $msg = [];
-
-        try {
-            $db->exec($users);
-        } catch (\PDOException $e) {
-            $msg[] =  $e->getMessage();
+        // Försök köra varje SQL-query och fånga alla undantag
+        foreach ($sql as $s)
+        {
+            try {
+                $db->exec($s);
+            } catch (\PDOException $e) {
+                $msg[] =  $e->getMessage();
+            }
         }
 
-        try {
-            $db->exec($listings);
-        } catch (\PDOException $e) {
-            $msg[] =  $e->getMessage();
-        }
-
-        try {
-            $db->exec($tags);
-        } catch (\PDOException $e) {
-            $msg[] =  $e->getMessage();
-        }
-
-        try {
-            $db->exec($listing_tag_pivot);
-        } catch (\PDOException $e) {
-            $msg[] =  $e->getMessage();
-        }
-
-        try {
-            $db->exec($conversations);
-        } catch (\PDOException $e) {
-            $msg[] =  $e->getMessage();
-        }
-
-        try {
-            $db->exec($messages);
-        } catch (\PDOException $e) {
-            $msg[] =  $e->getMessage();
-        }
-
+        // Om inga errormeddelanden finns lägger vi in ett meddelande att det lyckades
         if (count($msg) == 0) $msg[] = 'Tabellerna skapade';
 
+        // Returnera databassidan med relevant info
         return $this->databas($msg);
     }
 
     public function createContent()
     {
-        return $this->databas('&rarr; Exempeldata sparat');
+        // Instansiera och ställ in ett databasobjekt
+        $db = new Database();
+        $db->setAttribute( Database::ATTR_ERRMODE, Database::ERRMODE_EXCEPTION );
+
+        // Skapa två arrayer vi behöver nedan
+        $msg = [];
+        $sql = [];
+
+        $m1 = 'Hejsan, meddelande ett här';
+        $m2 = 'This is message two';
+        $m3 = 'And yet another message';
+        $m4 = 'The fourth message in this data';
+        $m5 = 'The fifth and final message in the example data array';
+
+
+        // Skapa SQL-queryn att köra
+        $sql[] = 'INSERT INTO conversations (sender, recipent) VALUES (1, 2)';
+        $sql[] = 'INSERT INTO conversations (sender, recipent) VALUES (2, 3)';
+
+        $sql[] = "INSERT INTO messages (conversation, sender, body) VALUES (1, 1, '$m1')";
+        $sql[] = "INSERT INTO messages (conversation, sender, body) VALUES (1, 2, '$m2')";
+        $sql[] = "INSERT INTO messages (conversation, sender, body) VALUES (1, 2, '$m3')";
+        $sql[] = "INSERT INTO messages (conversation, sender, body) VALUES (2, 2, '$m4')";
+        $sql[] = "INSERT INTO messages (conversation, sender, body) VALUES (2, 3, '$m5')";
+
+        // Försök köra varje SQL-query och fånga alla undantag
+        foreach ($sql as $s)
+        {
+            try {
+                $db->exec($s);
+            } catch (\PDOException $e) {
+                $msg[] =  $e->getMessage();
+            }
+        }
+
+        // Om inga errormeddelanden finns lägger vi in ett meddelande att det lyckades
+        if (count($msg) == 0) $msg[] = 'Exempelvärden skapade';
+
+        // Returnera databassidan med relevant info
+        return $this->databas($msg);
     }
 
 }

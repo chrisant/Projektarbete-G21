@@ -17,7 +17,7 @@ class User extends Model {
     public $rules = [
         'name'              => 'required',
         'email'             => 'required|email',
-        'phone'             => 'required',
+        'phone'             => '',
         'password'          => 'required|match:confirm-password',
         'confirm-password'  => 'required'
     ];

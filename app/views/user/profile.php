@@ -1,3 +1,5 @@
-<p><?= $this->user->name ?></p>
-<p><?= $this->user->phone ?></p>
-<p><?= $this->user->email ?></p>
+
+<p>Namn: <?= $this->user->name ?></p>
+<p>Telefon: <?= $this->user->phone ?></p>
+<p>E-post: <?= $this->user->email ?></p>
+

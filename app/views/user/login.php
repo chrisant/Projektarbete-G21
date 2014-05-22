@@ -1,6 +1,6 @@
 <h2>Logga in</h2>
-<form>
-    <input type="text" name="username" placeholder="Anv&auml;ndarnamn">
-    <input type="password" name="password" placeholder="L&ouml;senord">
+<form action="<?= PUBLIC_PATH ?>/login/post" method="post">
+    <input type="email" name="email" placeholder="E-post">
+    <input type="password" name="password" placeholder="Lösenord">
     <input type="submit" value="Logga in">
 </form>
