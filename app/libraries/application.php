@@ -53,7 +53,7 @@ class Application {
             }
 
             $controllerFile = APP_PATH . '/controllers/' . $this->controller . '.php';
-            $this->controller = '\G21\App\Controllers\\' . $this->controller;
+            $this->controller = '\G21\Controllers\\' . $this->controller;
         }
 
         require_once $controllerFile;

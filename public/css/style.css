@@ -23,7 +23,7 @@ header, main, footer {
 }
 
 a:link, a:visited {
-    color: #151621;
+    color: #000027;
     text-decoration: none;
 }
 a:hover { color: #27293d; }

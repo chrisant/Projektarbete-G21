@@ -13,6 +13,7 @@
             <nav>
                 <ul>
                     <li><a href="<?= PUBLIC_PATH ?>">Start</a></li>
+                    <li><a href="<?= PUBLIC_PATH ?>/admin">Admin</a></li>
                     <li><a href="<?= PUBLIC_PATH ?>/user/login">Login</a></li>
                     <li><a href="<?= PUBLIC_PATH ?>/user/register">Skapa anv&auml;ndarkonto</a></li>
                     <li><a href="<?= PUBLIC_PATH ?>/annons/skapa">Skapa annons</a></li>

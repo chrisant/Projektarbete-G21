@@ -142,4 +142,4 @@ include APP_PATH . '/libraries/Controller.php';
  *
  */
 
-require_once APP_PATH . '/libraries/Framework/application.php';
+require_once APP_PATH . '/libraries/application.php';
