@@ -72,3 +72,18 @@ input:focus, textarea:focus {
     text-align: center;
     margin-top: 15px;
 }
+
+.annons-title{
+
+}
+
+img.right {
+    float: right;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.annons-description {
+    width: 100%;
+    max-width: 700px;
+}
