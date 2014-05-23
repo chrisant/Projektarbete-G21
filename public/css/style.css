@@ -1,65 +1,51 @@
+/* ----------------------------------------------------
+|   Enkel reset
+---------------------------------------------------- */
+
 * {
     margin: 0;
     padding: 0;
 }
 
+
+/* ----------------------------------------------------
+|   Generiskt
+---------------------------------------------------- */
+
 body {
     font: 1em sans-serif;
     color: #212121;
-    background: #EEE;
     padding-top: 30px;
 }
-
-.wrapper {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    background: #FFF;
-    padding: 20px 10px;
-}
-
-header, main, footer {
-
-}
-
 a:link, a:visited {
     color: #000027;
     text-decoration: none;
 }
-a:hover { color: #27293d; }
-a:active { color: #393d5a; }
-
-nav ul {
-    list-style: none;
-    float: right;
+a:hover {
+    color: #27293d;
+}
+a:active {
+    color: #393d5a;
 }
 
-nav ul li {
-    float: left;
 
-}
-
-nav ul li a {
-    padding: 5px 10px;
-}
+/* ----------------------------------------------------
+|   Generiskt:      Formulär
+---------------------------------------------------- */
 
 input, textarea {
     border: 1px solid #DDD;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     padding: 5px 10px;
     margin: 3px 0;
     font: 0.9em sans-serif;
     color: #212121;
 }
-
 input:hover, textarea:hover {
-    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
-
 input:focus, textarea:focus {
     border-color: #8bbbff;
 }
-
 .error {
     border-color: #ff8486;
 }
@@ -68,7 +54,236 @@ input:focus, textarea:focus {
     border: 1px dotted red;
 }
 
-.closure {
+
+/* ----------------------------------------------------
+|   Layoutverktyg
+---------------------------------------------------- */
+
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+.clearfix {
+    clear: both;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+
+
+/* ----------------------------------------------------
+|   Header
+---------------------------------------------------- */
+header .wrapper {
+    padding-top: 30px;
+}
+.header-logo {
+    width: 25%;
+    float: left;
+}
+.header-logo .site-name {
+    font-size: 2.3em;
+    font-weight: 400;
+    line-height: 0.4em;
+    margin-left: 20px;
+    padding-top: 15px;
+}
+.header-search {
+    width: 55%;
+    margin-left: 25%;
+}
+.header-search input[type="text"] {
+    width: 100%;
+    max-width: 500px;
+    padding: 9px 12px;
+    display: inline-block;
+}
+.header-search input[type="submit"] {
+    width: 100%;
+    max-width: 60px;
+    padding: 6px 12px 8px;
+    display: inline-block;
+}
+
+
+/* ----------------------------------------------------
+|   Header:         Navigation
+---------------------------------------------------- */
+
+.navigation {
+    width: 20%;
+    float: right;
+    padding-top: 10px;
+}
+.navigation .dropdown {
+    padding: 8px 12px;
+    background: #DDD;
+    margin-right: 15px;
+}
+.navigation .dropdown:hover {
+    background: #CCC;
+}
+/* Göm dropdown-menyn tills vi vill se den */
+.navigation .dropdown ul {
+    display: none;
+    position: absolute;
+    margin-top: 27px;
+    margin-left: -64px;
+    background: #DDD;
+}
+/* Visa dropdown när vi för musen över den */
+.navigation .dropdown:hover ul {
+    display: inline-block;
+}
+.navigation .dropdown ul li {
+    display: block;
+    line-height: 40px;
+}
+.navigation .dropdown ul li:hover {
+    background: #CCC;
+}
+.navigation .dropdown ul li a {
+    padding: 10px 15px;
+
+}
+
+/* ----------------------------------------------------
+|   Header/Main:        Featured
+---------------------------------------------------- */
+.featured-tags {
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    height: 40px;
+    margin: 50px 0 25px;
     text-align: center;
-    margin-top: 15px;
+}
+.featured-tags ul {
+    list-style: none;
+    padding-top: 10px;
+}
+.featured-tags ul li {
+    display: inline-block;
+    line-height: 20px;
+}
+.featured-tags ul li a {
+    padding: 18px;
+    font-weight: lighter;
+    color: #999;
+}
+.featured-tags ul li a:hover {
+    color: #525252;
+}
+.featured {
+    margin: 30px 0 50px;
+}
+.feature {
+    display: inline-block;
+    width: 570px;
+    border: 1px solid #DDD;
+    padding: 7px;
+    height: 100px;
+    background: #F9F9F9;
+}
+.feature:first-child {
+    margin-right: 23px;
+}
+
+
+/* ----------------------------------------------------
+|   Main:       Sidebar
+---------------------------------------------------- */
+
+.sidebar {
+    float: right;
+    width: 250px;
+}
+
+/* ----------------------------------------------------
+|   Main:       Feed
+---------------------------------------------------- */
+.feed {
+
+}
+.feed .listing {
+    border: 1px solid #DDD;
+    width: 220px;
+    margin: 0 10px 15px 0;
+    min-height: 250px;
+    display: inline-block;
+}
+.feed .listing:nth-child(4n) {
+    margin-right: 0;
+}
+.listing p {
+    padding: 5px 10px;
+}
+
+.feed-start {
+    margin-right: 250px;
+}
+
+
+/* ----------------------------------------------------
+|   Footer
+---------------------------------------------------- */
+
+.page-footer {
+    background: #2a5d85;
+    min-height: 200px;
+    color: #EFEFEF;
+    padding: 40px 0 10px;
+    margin-top: 40px;
+}
+.footer-links {
+    list-style: none;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.footer-links li {
+    display: inline-block;
+    line-height: 25px;
+}
+.footer-links li a {
+    color: #FFF;
+    padding: 15px
+}
+
+
+
+.page-footer .copy {
+    text-align: center;
+}
+
+
+
+.annons-title{
+
+}
+
+img.right {
+    float: right;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.annons-description {
+    width: 100%;
+    max-width: 700px;
+}
+
+.annons-links {
+    list-style: none;
+}
+
+.annons-links li {
+    float: left;
+}
+
+.annons-links li a {
+    padding: 10px;
 }

@@ -33,14 +33,23 @@ class AdminController extends Controller {
                 name VARCHAR(50) NOT NULL,
                 email VARCHAR(50) NOT NULL,
                 phone VARCHAR(20) NOT NULL,
+                role int(11) NOT NULL,
                 password VARCHAR(128) NOT NULL,
                 salt VARCHAR(62) NOT NULL
             )';
 
         $sql[] =
+            'CREATE TABLE roles(
+                id INT(11) AUTO_INCREMENT PRIMARY KEY,
+                role VARCHAR(50) NOT NULL
+            )';
+
+        $sql[] =
             'CREATE TABLE listings(
                 id INT(11) AUTO_INCREMENT PRIMARY KEY,
+                author VARCHAR(50) NOT NULL,
                 title VARCHAR(50) NOT NULL,
+                type VARCHAR(20) NOT NULL,
                 images VARCHAR(500) NOT NULL,
                 description TEXT NOT NULL,
                 created TIMESTAMP NOT NULL,
@@ -50,7 +59,7 @@ class AdminController extends Controller {
         $sql[] =
             'CREATE TABLE tags(
                 id INT(11) AUTO_INCREMENT PRIMARY KEY,
-                name VARCHAR(50) NOT NULL
+                tag VARCHAR(50) NOT NULL
             )';
 
         $sql[] =

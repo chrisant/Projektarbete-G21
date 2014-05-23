@@ -1,6 +1,47 @@
-<p>Startsida</p>
+<div class="featured">
+    <div class="feature">
+        Feature
+    </div>
+    <div class="feature">
+        Feature
+    </div>
+</div>
 
-<?php if (isset($_SESSION['message'])) : ?>
-    <p><?= $_SESSION['message'] ?></p>
-    <?php session_unset($_SESSION['message']) ?>
-<?php endif ?>
+
+<aside class="sidebar">
+    Sidebar
+</aside>
+
+<div class="feed feed-start">
+    <article class="listing">
+        <p>annons</p>
+    </article>
+    <article class="listing">
+        <p>annons</p>
+    </article>
+    <article class="listing">
+        <p>annons</p>
+    </article>
+    <article class="listing">
+        <p>annons</p>
+    </article>
+    <article class="listing">
+        <p>annons</p>
+    </article>
+    <article class="listing">
+        <p>annons</p>
+    </article>
+    <article class="listing">
+        <p>annons</p>
+    </article>
+    <article class="listing">
+        <p>annons</p>
+    </article>
+    <article class="listing">
+        <p>annons</p>
+    </article>
+</div>
+
+
+
+<div class="clearfix"></div>
